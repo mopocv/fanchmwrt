@@ -12,10 +12,11 @@
 typedef struct iface_status{
     int proto;
     char ip[MAX_INET_ADDR_LEN];
+    char ipv6[128];
     char mask[MAX_INET_ADDR_LEN];
     char gateway[MAX_INET_ADDR_LEN];
-    char dns1[MAX_INET_ADDR_LEN];
-    char dns2[MAX_INET_ADDR_LEN];
+    char dns1[64];
+    char dns2[64];
 }iface_status_t;
 
 int get_iface_status(char *ifname, iface_status_t *status);
