@@ -18,7 +18,11 @@
 			</span>
 			<ul class="breadcrumb pull-right" id="modemenu" style="display:none"></ul>
 		</footer>
-		<script>L.require('menu-fanchmwrt')</script>
+		<script>
+			// Invalidate cached menu code when the theme is replaced without a firmware build.
+			L.env.resource_version = (L.env.resource_version || '') + '-fanchmwrt-icons-20261010-3';
+			L.require('menu-fanchmwrt');
+		</script>
 		{% endif %}
 	</body>
 </html>

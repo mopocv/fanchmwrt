@@ -1506,8 +1506,8 @@ header {
 	height: 25px;
 	display: inline-block;
 	background-color: currentColor;
-	-webkit-mask: url('icons/account.svg') center / contain no-repeat;
-	mask: url('icons/account.svg') center / contain no-repeat;
+	-webkit-mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
+	mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
 	overflow: hidden;
 }
 
@@ -1563,8 +1563,8 @@ header {
 
 .top-user-dropdown .mode-check {
 	background-color: currentColor;
-	-webkit-mask: url('icons/fwx_check.svg') center / contain no-repeat;
-	mask: url('icons/fwx_check.svg') center / contain no-repeat;
+	-webkit-mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
+	mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
 	display: inline-flex;
 	align-items: center;
 	width: 14px;
@@ -1712,47 +1712,47 @@ header {
 
 .menu-icon-system:before,
 .menu-icon-default:before {
-	--menu-icon-image: url('icons/default.svg');
+	--menu-icon-image: url('icons/default.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_ac:before {
-	--menu-icon-image: url('icons/fwx_ac.svg');
+	--menu-icon-image: url('icons/fwx_ac.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_advance:before {
-	--menu-icon-image: url('icons/fwx_advance.svg');
+	--menu-icon-image: url('icons/fwx_advance.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_app_center:before {
-	--menu-icon-image: url('icons/fwx_app_center.svg');
+	--menu-icon-image: url('icons/fwx_app_center.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_cloud_service:before {
-	--menu-icon-image: url('icons/fwx_cloud_service.svg');
+	--menu-icon-image: url('icons/fwx_cloud_service.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_dashboard:before {
-	--menu-icon-image: url('icons/fwx_dashboard.svg');
+	--menu-icon-image: url('icons/fwx_dashboard.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_games:before {
-	--menu-icon-image: url('icons/fwx_games.svg');
+	--menu-icon-image: url('icons/fwx_games.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_harbor_file:before {
-	--menu-icon-image: url('icons/fwx_harbor_file.svg');
+	--menu-icon-image: url('icons/fwx_harbor_file.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_internet_record:before {
-	--menu-icon-image: url('icons/fwx_internet_record.svg');
+	--menu-icon-image: url('icons/fwx_internet_record.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_monitor:before {
-	--menu-icon-image: url('icons/fwx_monitor.svg');
+	--menu-icon-image: url('icons/fwx_monitor.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_network:before {
-	--menu-icon-image: url('icons/fwx_network.svg');
+	--menu-icon-image: url('icons/fwx_network.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_network_service:before {
@@ -1760,19 +1760,19 @@ header {
 }
 
 .menu-icon-fwx_parental_control:before {
-	--menu-icon-image: url('icons/fwx_parental_control.svg');
+	--menu-icon-image: url('icons/fwx_parental_control.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_tools:before {
-	--menu-icon-image: url('icons/fwx_tools.svg');
+	--menu-icon-image: url('icons/fwx_tools.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_user:before {
-	--menu-icon-image: url('icons/fwx_user.svg');
+	--menu-icon-image: url('icons/fwx_user.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 .menu-icon-fwx_wireless:before {
-	--menu-icon-image: url('icons/fwx_wireless.svg');
+	--menu-icon-image: url('icons/fwx_wireless.svg?v=fanchmwrt-icons-20261010-3');
 }
 
 
@@ -2021,13 +2021,13 @@ header a.menu:after {
 
 .sidebar-nav .nav > li > a:before {
 	content: '';
-	flex: 0 0 20px;
-	width: 20px;
-	height: 20px;
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
 	margin-right: 10px;
 	background-color: currentColor;
-	-webkit-mask: var(--menu-icon-image, url('icons/default.svg')) center / contain no-repeat;
-	mask: var(--menu-icon-image, url('icons/default.svg')) center / contain no-repeat;
+	-webkit-mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
+	mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
 }
 
 .sidebar-nav .nav a.menu {
@@ -3822,13 +3822,14 @@ div.cbi-value var.cbi-tooltip-container,
 }
 
 /* Compact navigation and top-layer menus. */
-.menu-icon-status:before { --menu-icon-image: url("icons/status.svg"); }
-.menu-icon-system:before { --menu-icon-image: url("icons/system.svg"); }
-.menu-icon-services:before { --menu-icon-image: url("icons/services.svg"); }
-.menu-icon-vpn:before { --menu-icon-image: url("icons/vpn.svg"); }
-.menu-icon-nas:before { --menu-icon-image: url("icons/nas.svg"); }
-.menu-icon-containers:before { --menu-icon-image: url("icons/containers.svg"); }
+.menu-icon-status:before { --menu-icon-image: url("icons/status.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-system:before { --menu-icon-image: url("icons/system.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-services:before { --menu-icon-image: url("icons/services.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-vpn:before { --menu-icon-image: url("icons/vpn.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-nas:before { --menu-icon-image: url("icons/nas.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-containers:before { --menu-icon-image: url("icons/containers.svg?v=fanchmwrt-icons-20261010-3"); }
 
+.sidebar-footer { display: none; }
 .sidebar-toggle { display: none; }
 .sidebar-flyout.sidebar-flyout {
  display: block !important; position: fixed !important; inset: auto; z-index: 1200;
@@ -3840,20 +3841,64 @@ div.cbi-value var.cbi-tooltip-container,
 }
 .sidebar-nav .nav .sidebar-flyout li a { padding: 10px 12px; }
 .cbi-dropdown[open] > ul.dropdown[popover] { color: var(--text-color-high); }
+.cbi-dropdown[open] > ul.dropdown > li {
+ white-space: normal;
+ overflow-wrap: anywhere;
+}
 @media (min-width: 769px) {
  body.theme_layout { --sidebar-width: 200px; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); background-size: calc(100% - var(--sidebar-width)) 67.5px; }
- body.theme_layout.sidebar-collapsed { --sidebar-width: 72px; }
- .sidebar-toggle { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 36px; height: 36px; padding: 8px; border: 0; border-radius: 8px; background: rgba(255,255,255,.16); color: #fff; cursor: pointer; }
- .sidebar-toggle:hover { background: rgba(255,255,255,.26); }
+ .sidebar-collapsed body.theme_layout { --sidebar-width: 72px; }
+ .sidebar-footer { display: block; flex-shrink: 0; margin-top: auto; padding: 12px 8px; border-top: 1px solid var(--border-color-low); }
+ .sidebar-toggle { display: flex; align-items: center; justify-content: flex-start; gap: 10px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 10px; background: transparent; color: var(--text-color-high); cursor: pointer; font-size: 13px; }
+ .sidebar-collapsed .sidebar-toggle { justify-content: center; padding: 10px 8px; }
+ .sidebar-collapsed .sidebar-toggle-label { display: none; }
+ .sidebar-toggle:hover { background: var(--background-color-low); color: var(--text-color-highest); }
  .sidebar-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
- .sidebar-toggle span { width: 18px; height: 18px; background: currentColor; mask: url('icons/sidebar.svg') center / contain no-repeat; -webkit-mask: url('icons/sidebar.svg') center / contain no-repeat; }
- .sidebar-collapsed .sidebar-toggle span { transform: scaleX(-1); }
+ .sidebar-toggle .sidebar-toggle-icon { flex: 0 0 20px; width: 20px; height: 20px; background: currentColor; mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat; -webkit-mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat; }
+ .sidebar-collapsed .sidebar-toggle .sidebar-toggle-icon { transform: scaleX(-1); }
  .sidebar-collapsed .sidebar_brand { font-size: 0; padding: 17px 20px; }
  .sidebar-collapsed .sidebar_brand:before { content: ''; display: block; width: 32px; height: 32px; background: url('logo.svg') center / contain no-repeat; }
  .sidebar-collapsed .sidebar-nav .nav > li > a { justify-content: center; padding: 12px 8px; border-radius: 12px; }
- .sidebar-collapsed .sidebar-nav .nav > li > a:before { margin: 0; width: 22px; height: 22px; flex-basis: 22px; }
+ .sidebar-collapsed .sidebar-nav .nav > li > a:before { margin: 0; width: 24px; height: 24px; flex-basis: 24px; }
  .sidebar-collapsed .sidebar-nav .nav > li > a .menu-label,
  .sidebar-collapsed .sidebar-nav .nav > li > a:after { display: none; }
  .sidebar-collapsed .sidebar-nav .nav .dropdown-menu:not(.sidebar-flyout) { display: none; }
  .sidebar-nav .nav > .current_group > a { background: var(--menu-selected-background); color: #4776db; }
 }
+
+/* Secondary navigation shares the same line icon style as the main menu. */
+.menu-icon-logout:before { --menu-icon-image: url("icons/logout.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-interfaces:before { --menu-icon-image: url("icons/interfaces.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-routes:before { --menu-icon-image: url("icons/routes.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-dhcp:before { --menu-icon-image: url("icons/dhcp.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-dns:before { --menu-icon-image: url("icons/dns.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-diagnostics:before { --menu-icon-image: url("icons/diagnostics.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-firewall:before { --menu-icon-image: url("icons/firewall.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-logs:before { --menu-icon-image: url("icons/logs.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-processes:before { --menu-icon-image: url("icons/processes.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-upgrade:before { --menu-icon-image: url("icons/upgrade.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-reboot:before { --menu-icon-image: url("icons/reboot.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-submenu:before { --menu-icon-image: url("icons/submenu.svg?v=fanchmwrt-icons-20261010-3"); }
+.sidebar-nav .nav .dropdown-menu li a { padding-left: 24px; gap: 10px; }
+.sidebar-nav .nav .dropdown-menu li a:before {
+ content: ''; flex: 0 0 22px; width: 22px; height: 22px; background-color: currentColor;
+ -webkit-mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
+ mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
+}
+.sidebar-nav .nav .sidebar-flyout li a { padding-left: 12px; }
+
+/* Plugin and system icons use the same 24-unit, rounded line style as fwx_. */
+.menu-icon-lucky:before { --menu-icon-image: url("icons/lucky.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-terminal:before { --menu-icon-image: url("icons/terminal.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-upnp:before { --menu-icon-image: url("icons/upnp.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-switch:before { --menu-icon-image: url("icons/switch.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-channels:before { --menu-icon-image: url("icons/channels.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-graphs:before { --menu-icon-image: url("icons/graphs.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-settings:before { --menu-icon-image: url("icons/settings.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-startup:before { --menu-icon-image: url("icons/startup.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-schedule:before { --menu-icon-image: url("icons/schedule.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-leds:before { --menu-icon-image: url("icons/leds.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-account:before { --menu-icon-image: url("icons/account.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-sessions:before { --menu-icon-image: url("icons/sessions.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-device-records:before { --menu-icon-image: url("icons/device-records.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-fwx_check:before { --menu-icon-image: url("icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3"); }

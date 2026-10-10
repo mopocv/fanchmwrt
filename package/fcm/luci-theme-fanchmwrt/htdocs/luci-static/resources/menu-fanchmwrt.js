@@ -16,6 +16,47 @@ return baseclass.extend({
 		'dockerman': 'containers',
 		'vpnserver': 'vpn',
 		'bandwidth': 'fwx_monitor',
+		'logout': 'logout',
+		'overview': 'fwx_dashboard',
+		'interfaces': 'interfaces',
+		'wireless': 'fwx_wireless',
+		'routes': 'routes',
+		'routing': 'routes',
+		'dhcp': 'dhcp',
+		'dns': 'dns',
+		'network_diag': 'diagnostics',
+		'diagnostics': 'diagnostics',
+		'firewall': 'firewall',
+		'logs': 'logs',
+		'syslog': 'logs',
+		'dmesg': 'logs',
+		'processes': 'processes',
+		'realtime': 'fwx_monitor',
+		'admin': 'fwx_user',
+		'software': 'fwx_app_center',
+		'packages': 'fwx_app_center',
+		'startup': 'processes',
+		'crontab': 'dhcp',
+		'mounts': 'nas',
+		'flash': 'upgrade',
+		'reboot': 'reboot',
+		'leds': 'status',
+		'backup': 'nas',
+		'nikki': 'vpn',
+		'openclash': 'vpn',
+		'passwall': 'vpn',
+		'passwall2': 'vpn',
+		'package-manager': 'fwx_app_center',
+		'lucky': 'lucky',
+		'ttyd': 'terminal',
+		'upnp': 'upnp',
+		'switch': 'switch',
+		'routesj': 'routes',
+		'iptables': 'firewall',
+		'nftables': 'firewall',
+		'channel_analysis': 'channels',
+		'graphs': 'graphs',
+		'collectd': 'settings',
 		'fwx_network': 'fwx_network',
 		'fwx_network_service': 'fwx_network_service',
 		'fwx_wireless': 'fwx_wireless',
@@ -29,9 +70,40 @@ return baseclass.extend({
 		'fwx_tools': 'fwx_tools',
 		'fwx_games': 'fwx_games',
 		'fwx_cloud_service': 'fwx_cloud_service',
-		'fwx_ac': 'fwx_ac'
+		'fwx_ac': 'fwx_ac',
+		'fwx_harbor_file': 'fwx_harbor_file'
+	},
+	// Some LuCI child names also occur as top-level categories.
+	menuPathIcons: {
+		'admin/network/network': 'interfaces',
+		'admin/system/admin': 'account',
+		'admin/system/startup': 'startup',
+		'admin/system/crontab': 'schedule',
+		'admin/system/leds': 'leds',
+		'admin/system/system': 'settings',
+		'admin/fwx_network/work_mode': 'settings',
+		'admin/fwx_network/lan': 'interfaces',
+		'admin/fwx_network/wan': 'dns',
+		'admin/fwx_monitor/session_stat': 'sessions',
+		'admin/fwx_monitor/user_record': 'device-records',
+		'admin/fwx_monitor/traffic_stat': 'graphs',
+		'admin/fwx_wireless/radio': 'fwx_wireless',
+		'admin/fwx_wireless/interface': 'interfaces',
+		'admin/fwx_parental_control/appfilter': 'fwx_app_center',
+		'admin/fwx_parental_control/macfilter': 'fwx_parental_control',
+		'admin/fwx_parental_control/mac_blacklist': 'firewall',
+		'admin/fwx_advance/dashboard_setting': 'fwx_dashboard',
+		'admin/fwx_advance/fwx_feature': 'processes',
+		'admin/fwx_advance/system': 'settings',
+		'admin/fwx_internet_record/base_setting': 'settings',
+		'admin/fwx_internet_record/record_whitelist': 'fwx_check',
+		'admin/fwx_user/list': 'fwx_user',
+		'admin/fwx_user/detail': 'account'
 	},
 	defaultIcon: 'default',
+	getMenuIcon(path, name, level) {
+		return this.menuPathIcons[path] || this.menuIcons[name] || (level === 0 ? this.defaultIcon : 'submenu');
+	},
 	__init__() {
 		ui.menu.load().then(L.bind(this.render, this));
 	},
@@ -60,27 +132,43 @@ return baseclass.extend({
 	},
 
 	setup_sidebar() {
-		const button = document.querySelector('.sidebar-toggle');
+		const sidebar = document.querySelector('.sidebar-nav');
+		const button = E('button', {
+			'class': 'sidebar-toggle', 'type': 'button',
+			'aria-controls': 'theme-sidebar', 'aria-expanded': 'true'
+		}, [
+			E('span', { 'class': 'sidebar-toggle-icon', 'aria-hidden': 'true' }),
+			E('span', { 'class': 'sidebar-toggle-label' })
+		]);
+		sidebar.appendChild(E('div', { 'class': 'sidebar-footer' }, [button]));
 		const apply = (collapsed) => {
-			document.body.classList.toggle('sidebar-collapsed', collapsed);
+			document.documentElement.classList.toggle('sidebar-collapsed', collapsed);
 			button.setAttribute('aria-expanded', String(!collapsed));
-			button.title = collapsed ? _('Expand menu') : _('Collapse menu');
+			const action = collapsed ? 'Expand menu' : 'Collapse menu';
+			const translated = collapsed ? _('Expand menu') : _('Collapse menu');
+			// Direct theme uploads may precede installation of the compiled translation catalog.
+			button.title = translated === action && /^zh(?:[-_]|$)/i.test(document.documentElement.lang)
+				? (collapsed ? '展开导航栏' : '收起导航栏') : translated;
 			button.setAttribute('aria-label', button.title);
+			button.querySelector('.sidebar-toggle-label').textContent = button.title;
 		};
 		apply(localStorage.getItem('luci-sidebar-collapsed') === 'true');
 		button.addEventListener('click', () => {
-			const collapsed = !document.body.classList.contains('sidebar-collapsed');
+			const collapsed = !document.documentElement.classList.contains('sidebar-collapsed');
 			apply(collapsed);
 			localStorage.setItem('luci-sidebar-collapsed', String(collapsed));
 		});
-		const close = () => document.querySelectorAll('.sidebar-flyout').forEach((menu) => {
-			menu.parentElement.classList.remove('open');
-			menu.parentElement.querySelector('a.menu').setAttribute('aria-expanded', 'false');
-			if (menu.hasAttribute('popover')) menu.hidePopover();
-			menu.removeAttribute('popover');
-			menu.classList.remove('sidebar-flyout');
-			menu.style.cssText = '';
-		});
+		const close = () => {
+			clearTimeout(this.sidebar_flyout_close_timer);
+			document.querySelectorAll('.sidebar-flyout').forEach((menu) => {
+				menu.parentElement.classList.remove('open');
+				menu.parentElement.querySelector('a.menu').setAttribute('aria-expanded', 'false');
+				if (menu.hasAttribute('popover')) menu.hidePopover();
+				menu.removeAttribute('popover');
+				menu.classList.remove('sidebar-flyout');
+				menu.style.cssText = '';
+			});
+		};
 		this.close_sidebar_flyouts = close;
 		button.addEventListener('click', close);
 		document.addEventListener('click', (event) => {
@@ -103,14 +191,18 @@ return baseclass.extend({
 			const height = window.innerHeight;
 			const below = height - rect.bottom - 8;
 			const above = rect.top - 8;
-			const down = below >= Math.min(320, list.scrollHeight) || below >= above;
-			const listWidth = Math.min(Math.max(rect.width, list.scrollWidth), width - 16);
+			// Popovers resolve percentage widths against the viewport. Anchor the
+			// width to the control, never to the list's previous scrollWidth.
+			const listWidth = Math.min(rect.width, width - 16);
 			Object.assign(list.style, {
 				position: 'fixed', margin: '0', right: 'auto',
 				left: Math.max(8, Math.min(rect.left, width - listWidth - 8)) + 'px',
+				width: listWidth + 'px', minWidth: '0', maxWidth: width - 16 + 'px'
+			});
+			const down = below >= Math.min(320, list.scrollHeight) || below >= above;
+			Object.assign(list.style, {
 				top: down ? rect.bottom + 'px' : 'auto',
 				bottom: down ? 'auto' : height - rect.top + 'px',
-				width: listWidth + 'px', minWidth: '0', maxWidth: width - 16 + 'px',
 				maxHeight: Math.max(0, Math.min(320, down ? below : above)) + 'px'
 			});
 		};
@@ -123,6 +215,7 @@ return baseclass.extend({
 					const list = widget.querySelector('ul.dropdown');
 					if (!list) continue;
 					active.set(widget, [list, list.style.cssText]);
+					place(widget, list);
 					if (typeof list.showPopover === 'function') {
 						list.setAttribute('popover', 'manual');
 						list.showPopover();
@@ -321,10 +414,6 @@ return baseclass.extend({
 
 		const topNavbarContent = E('div', { 'class': 'top-navbar-content' }, [
 			E('button', {
-				'class': 'sidebar-toggle', 'type': 'button',
-				'aria-controls': 'theme-sidebar', 'aria-expanded': 'true'
-			}, [E('span', { 'aria-hidden': 'true' })]),
-			E('button', {
 				'class': 'mobile-menu-toggle', 'type': 'button',
 				'aria-label': _('Menu'), 'aria-controls': 'theme-sidebar',
 				'aria-expanded': 'false'
@@ -469,21 +558,17 @@ return baseclass.extend({
 				if (has_submenu) classes.push('open');
 			}
 			const link = E('a', {
-				'class': (has_submenu ? 'menu ' : '') + (level === 0 ? 'menu-icon-' + (this.menuIcons[child.name] || this.defaultIcon) : ''),
+				'class': (has_submenu ? 'menu ' : '') + 'menu-icon-' + this.getMenuIcon(url + '/' + child.name, child.name, level),
 				'href': has_submenu ? '#' : L.url(url, child.name),
 				'title': _(child.title), 'aria-label': _(child.title)
 			}, [E('span', { 'class': 'menu-label' }, [_(child.title)])]);
 			const li = E('li', { 'class': classes.join(' ') }, has_submenu ? [link, submenu] : [link]);
 			if (has_submenu) {
 				link.setAttribute('aria-expanded', String(is_active));
-				link.addEventListener('click', (event) => {
-					event.preventDefault();
-					let open = !li.classList.contains('open');
-					const compact = document.body.classList.contains('sidebar-collapsed') && window.matchMedia('(min-width: 769px)').matches;
-					const was_flyout = submenu.classList.contains('sidebar-flyout');
-					if (compact) open = !was_flyout;
+				const compact = () => document.documentElement.classList.contains('sidebar-collapsed') && window.matchMedia('(min-width: 769px)').matches;
+				const set_open = (open) => {
 					this.close_sidebar_flyouts();
-					if (compact && !was_flyout) {
+					if (compact() && open) {
 						const rect = link.getBoundingClientRect();
 						submenu.classList.add('sidebar-flyout');
 						if (typeof submenu.showPopover === 'function') {
@@ -499,6 +584,31 @@ return baseclass.extend({
 					});
 					li.classList.toggle('open', open);
 					link.setAttribute('aria-expanded', String(open));
+				};
+				link.addEventListener('click', (event) => {
+					event.preventDefault();
+					// Hover may have already opened it before the click arrives.
+					set_open(compact() || !li.classList.contains('open'));
+				});
+				const hover_open = (event) => {
+					if (event.pointerType === 'touch' || !compact()) return;
+					clearTimeout(this.sidebar_flyout_close_timer);
+					if (!submenu.classList.contains('sidebar-flyout')) set_open(true);
+				};
+				const hover_close = (event) => {
+					if (event.pointerType === 'touch' || !compact()) return;
+					clearTimeout(this.sidebar_flyout_close_timer);
+					// Allow crossing the gap between the icon rail and its floating menu.
+					this.sidebar_flyout_close_timer = setTimeout(() => {
+						if (submenu.classList.contains('sidebar-flyout')) this.close_sidebar_flyouts();
+					}, 200);
+				};
+				li.addEventListener('pointerenter', hover_open);
+				li.addEventListener('pointerleave', hover_close);
+				submenu.addEventListener('pointerenter', hover_open);
+				submenu.addEventListener('pointerleave', hover_close);
+				link.addEventListener('focus', () => {
+					if (compact() && !submenu.classList.contains('sidebar-flyout')) set_open(true);
 				});
 			} else if (is_active) {
 				link.setAttribute('aria-current', 'page');
