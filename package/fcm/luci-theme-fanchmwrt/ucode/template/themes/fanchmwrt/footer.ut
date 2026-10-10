@@ -20,7 +20,7 @@
 		</footer>
 		<script>
 			// Invalidate cached menu code when the theme is replaced without a firmware build.
-			L.env.resource_version = (L.env.resource_version || '') + '-fanchmwrt-icons-20261010-3';
+			L.env.resource_version = (L.env.resource_version || '') + '-fanchmwrt-icons-20261010-4';
 			L.require('menu-fanchmwrt');
 		</script>
 		{% endif %}

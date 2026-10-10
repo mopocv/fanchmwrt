@@ -1506,8 +1506,8 @@ header {
 	height: 25px;
 	display: inline-block;
 	background-color: currentColor;
-	-webkit-mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
-	mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
+	-webkit-mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat;
+	mask: url('icons/account.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat;
 	overflow: hidden;
 }
 
@@ -1563,8 +1563,8 @@ header {
 
 .top-user-dropdown .mode-check {
 	background-color: currentColor;
-	-webkit-mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
-	mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat;
+	-webkit-mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat;
+	mask: url('icons/fwx_check.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat;
 	display: inline-flex;
 	align-items: center;
 	width: 14px;
@@ -1712,63 +1712,63 @@ header {
 
 .menu-icon-system:before,
 .menu-icon-default:before {
-	--menu-icon-image: url('icons/default.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/default.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_ac:before {
-	--menu-icon-image: url('icons/fwx_ac.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_ac.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_advance:before {
-	--menu-icon-image: url('icons/fwx_advance.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_advance.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_app_center:before {
-	--menu-icon-image: url('icons/fwx_app_center.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_app_center.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_cloud_service:before {
-	--menu-icon-image: url('icons/fwx_cloud_service.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_cloud_service.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_dashboard:before {
-	--menu-icon-image: url('icons/fwx_dashboard.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_dashboard.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_games:before {
-	--menu-icon-image: url('icons/fwx_games.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_games.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_harbor_file:before {
-	--menu-icon-image: url('icons/fwx_harbor_file.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_harbor_file.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_internet_record:before {
-	--menu-icon-image: url('icons/fwx_internet_record.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_internet_record.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_monitor:before {
-	--menu-icon-image: url('icons/fwx_monitor.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_monitor.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_network:before {
-	--menu-icon-image: url('icons/fwx_network.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_network.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_parental_control:before {
-	--menu-icon-image: url('icons/fwx_parental_control.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_parental_control.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_tools:before {
-	--menu-icon-image: url('icons/fwx_tools.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_tools.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_user:before {
-	--menu-icon-image: url('icons/fwx_user.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_user.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 .menu-icon-fwx_wireless:before {
-	--menu-icon-image: url('icons/fwx_wireless.svg?v=fanchmwrt-icons-20261010-3');
+	--menu-icon-image: url('icons/fwx_wireless.svg?v=fanchmwrt-icons-20261010-4');
 }
 
 
@@ -2022,8 +2022,8 @@ header a.menu:after {
 	height: 24px;
 	margin-right: 10px;
 	background-color: currentColor;
-	-webkit-mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
-	mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
+	-webkit-mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-4')) center / contain no-repeat;
+	mask: var(--menu-icon-image, url('icons/default.svg?v=fanchmwrt-icons-20261010-4')) center / contain no-repeat;
 }
 
 .sidebar-nav .nav a.menu {
@@ -3818,12 +3818,12 @@ div.cbi-value var.cbi-tooltip-container,
 }
 
 /* Compact navigation and top-layer menus. */
-.menu-icon-status:before { --menu-icon-image: url("icons/status.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-system:before { --menu-icon-image: url("icons/system.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-services:before { --menu-icon-image: url("icons/services.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-vpn:before { --menu-icon-image: url("icons/vpn.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-nas:before { --menu-icon-image: url("icons/nas.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-containers:before { --menu-icon-image: url("icons/containers.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-status:before { --menu-icon-image: url("icons/status.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-system:before { --menu-icon-image: url("icons/system.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-services:before { --menu-icon-image: url("icons/services.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-vpn:before { --menu-icon-image: url("icons/vpn.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-nas:before { --menu-icon-image: url("icons/nas.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-containers:before { --menu-icon-image: url("icons/containers.svg?v=fanchmwrt-icons-20261010-4"); }
 
 .sidebar-footer { display: none; }
 .sidebar-toggle { display: none; }
@@ -3850,7 +3850,7 @@ div.cbi-value var.cbi-tooltip-container,
  .sidebar-collapsed .sidebar-toggle-label { display: none; }
  .sidebar-toggle:hover { background: var(--background-color-low); color: var(--text-color-highest); }
  .sidebar-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
- .sidebar-toggle .sidebar-toggle-icon { flex: 0 0 20px; width: 20px; height: 20px; background: currentColor; mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat; -webkit-mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-3') center / contain no-repeat; }
+ .sidebar-toggle .sidebar-toggle-icon { flex: 0 0 20px; width: 20px; height: 20px; background: currentColor; mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat; -webkit-mask: url('icons/sidebar.svg?v=fanchmwrt-icons-20261010-4') center / contain no-repeat; }
  .sidebar-collapsed .sidebar-toggle .sidebar-toggle-icon { transform: scaleX(-1); }
  .sidebar-collapsed .sidebar_brand { font-size: 0; padding: 17px 20px; }
  .sidebar-collapsed .sidebar_brand:before { content: ''; display: block; width: 32px; height: 32px; background: url('logo.svg') center / contain no-repeat; }
@@ -3863,38 +3863,38 @@ div.cbi-value var.cbi-tooltip-container,
 }
 
 /* Secondary navigation shares the same line icon style as the main menu. */
-.menu-icon-logout:before { --menu-icon-image: url("icons/logout.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-interfaces:before { --menu-icon-image: url("icons/interfaces.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-routes:before { --menu-icon-image: url("icons/routes.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-dhcp:before { --menu-icon-image: url("icons/dhcp.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-dns:before { --menu-icon-image: url("icons/dns.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-diagnostics:before { --menu-icon-image: url("icons/diagnostics.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-firewall:before { --menu-icon-image: url("icons/firewall.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-logs:before { --menu-icon-image: url("icons/logs.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-processes:before { --menu-icon-image: url("icons/processes.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-upgrade:before { --menu-icon-image: url("icons/upgrade.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-reboot:before { --menu-icon-image: url("icons/reboot.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-submenu:before { --menu-icon-image: url("icons/submenu.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-logout:before { --menu-icon-image: url("icons/logout.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-interfaces:before { --menu-icon-image: url("icons/interfaces.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-routes:before { --menu-icon-image: url("icons/routes.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-dhcp:before { --menu-icon-image: url("icons/dhcp.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-dns:before { --menu-icon-image: url("icons/dns.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-diagnostics:before { --menu-icon-image: url("icons/diagnostics.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-firewall:before { --menu-icon-image: url("icons/firewall.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-logs:before { --menu-icon-image: url("icons/logs.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-processes:before { --menu-icon-image: url("icons/processes.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-upgrade:before { --menu-icon-image: url("icons/upgrade.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-reboot:before { --menu-icon-image: url("icons/reboot.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-submenu:before { --menu-icon-image: url("icons/submenu.svg?v=fanchmwrt-icons-20261010-4"); }
 .sidebar-nav .nav .dropdown-menu li a { padding-left: 24px; gap: 10px; }
 .sidebar-nav .nav .dropdown-menu li a:before {
  content: ''; flex: 0 0 22px; width: 22px; height: 22px; background-color: currentColor;
- -webkit-mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
- mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-3')) center / contain no-repeat;
+ -webkit-mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-4')) center / contain no-repeat;
+ mask: var(--menu-icon-image, url('icons/submenu.svg?v=fanchmwrt-icons-20261010-4')) center / contain no-repeat;
 }
 .sidebar-nav .nav .sidebar-flyout li a { padding-left: 12px; }
 
 /* Plugin and system icons use the same 24-unit, rounded line style as fwx_. */
-.menu-icon-lucky:before { --menu-icon-image: url("icons/lucky.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-terminal:before { --menu-icon-image: url("icons/terminal.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-upnp:before { --menu-icon-image: url("icons/upnp.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-switch:before { --menu-icon-image: url("icons/switch.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-channels:before { --menu-icon-image: url("icons/channels.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-graphs:before { --menu-icon-image: url("icons/graphs.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-settings:before { --menu-icon-image: url("icons/settings.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-startup:before { --menu-icon-image: url("icons/startup.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-schedule:before { --menu-icon-image: url("icons/schedule.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-leds:before { --menu-icon-image: url("icons/leds.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-account:before { --menu-icon-image: url("icons/account.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-sessions:before { --menu-icon-image: url("icons/sessions.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-device-records:before { --menu-icon-image: url("icons/device-records.svg?v=fanchmwrt-icons-20261010-3"); }
-.menu-icon-fwx_check:before { --menu-icon-image: url("icons/fwx_check.svg?v=fanchmwrt-icons-20261010-3"); }
+.menu-icon-lucky:before { --menu-icon-image: url("icons/lucky.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-terminal:before { --menu-icon-image: url("icons/terminal.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-upnp:before { --menu-icon-image: url("icons/upnp.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-switch:before { --menu-icon-image: url("icons/switch.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-channels:before { --menu-icon-image: url("icons/channels.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-graphs:before { --menu-icon-image: url("icons/graphs.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-settings:before { --menu-icon-image: url("icons/settings.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-startup:before { --menu-icon-image: url("icons/startup.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-schedule:before { --menu-icon-image: url("icons/schedule.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-leds:before { --menu-icon-image: url("icons/leds.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-account:before { --menu-icon-image: url("icons/account.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-sessions:before { --menu-icon-image: url("icons/sessions.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-device-records:before { --menu-icon-image: url("icons/device-records.svg?v=fanchmwrt-icons-20261010-4"); }
+.menu-icon-fwx_check:before { --menu-icon-image: url("icons/fwx_check.svg?v=fanchmwrt-icons-20261010-4"); }

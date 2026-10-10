@@ -145,9 +145,10 @@ return baseclass.extend({
 			button.setAttribute('aria-expanded', String(!collapsed));
 			const action = collapsed ? 'Expand menu' : 'Collapse menu';
 			const translated = collapsed ? _('Expand menu') : _('Collapse menu');
-			// Direct theme uploads may precede installation of the compiled translation catalog.
+			const theme_translations = window.fanchmwrtThemeTranslations || {};
+			const chinese = theme_translations.zh || {};
 			button.title = translated === action && /^zh(?:[-_]|$)/i.test(document.documentElement.lang)
-				? (collapsed ? '展开导航栏' : '收起导航栏') : translated;
+				? (chinese[action] || translated) : translated;
 			button.setAttribute('aria-label', button.title);
 			button.querySelector('.sidebar-toggle-label').textContent = button.title;
 		};
