@@ -6039,6 +6039,7 @@ static struct json_object *get_dashboard_network_status(void) {
     }
     
     json_object_object_add(network_status, "lan", lan_obj);
+    json_object_object_add(lan_obj, "ipv6", json_object_new_string(lan_status.ipv6));
     
     struct json_object *wan_obj = json_object_new_object();
     iface_status_t wan_status;
@@ -6058,6 +6059,15 @@ static struct json_object *get_dashboard_network_status(void) {
 		
 		json_object_object_add(wan_obj, "dns", wan_dns);
     }
+    /* DHCPv6 commonly runs on a separate wan6 (or netifd's dynamic wan_6). */
+    iface_status_t wan6_status;
+    memset(&wan6_status, 0, sizeof(wan6_status));
+    if (get_iface_status("wan6", &wan6_status) != 0 || wan6_status.ipv6[0] == '\0') {
+        memset(&wan6_status, 0, sizeof(wan6_status));
+        get_iface_status("wan_6", &wan6_status);
+    }
+    json_object_object_add(wan_obj, "ipv6", json_object_new_string(
+        wan6_status.ipv6[0] ? wan6_status.ipv6 : wan_status.ipv6));
     json_object_object_add(network_status, "wan", wan_obj);
     json_object_object_add(network_status, "port_status", get_dashboard_port_status());
     

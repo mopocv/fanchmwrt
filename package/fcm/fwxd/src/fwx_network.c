@@ -26,6 +26,38 @@
 #define MAX_INET_ADDR_LEN 32
 #define MAX_MAC_ADDR_LEN 18
 
+static void read_iface_ipv6(struct json_object *resp_obj, iface_status_t *status)
+{
+    const char *keys[] = { "ipv6-address", "ipv6-prefix-assignment" };
+    struct in6_addr parsed;
+    size_t key;
+
+    for (key = 0; key < sizeof(keys) / sizeof(keys[0]); key++) {
+        struct json_object *array = json_object_object_get(resp_obj, keys[key]);
+        size_t i;
+        if (!array || !json_object_is_type(array, json_type_array))
+            continue;
+        for (i = 0; i < json_object_array_length(array); i++) {
+            struct json_object *entry = json_object_array_get_idx(array, i);
+            if (key == 1)
+                entry = json_object_object_get(entry, "local-address");
+            if (!entry)
+                continue;
+            struct json_object *address = json_object_object_get(entry, "address");
+            const char *value = address ? json_object_get_string(address) : NULL;
+            if (!value || inet_pton(AF_INET6, value, &parsed) != 1 ||
+                IN6_IS_ADDR_UNSPECIFIED(&parsed) || IN6_IS_ADDR_LINKLOCAL(&parsed) ||
+                IN6_IS_ADDR_LOOPBACK(&parsed) || IN6_IS_ADDR_MULTICAST(&parsed))
+                continue;
+            /* Prefer a global address over ULA, regardless of array order. */
+            if (status->ipv6[0] == '\0' || (parsed.s6_addr[0] & 0xfe) != 0xfc)
+                snprintf(status->ipv6, sizeof(status->ipv6), "%s", value);
+            if ((parsed.s6_addr[0] & 0xfe) != 0xfc)
+                return;
+        }
+    }
+}
+
 int get_iface_status(char *ifname, iface_status_t *status){
     int ret = -1; 
     char *buf = NULL;
@@ -43,6 +75,8 @@ int get_iface_status(char *ifname, iface_status_t *status){
     struct json_object *ipv4_addr_array = json_object_object_get(resp_obj, "ipv4-address");
     struct json_object *route_array = json_object_object_get(resp_obj, "route");
     struct json_object *dns_server_array = json_object_object_get(resp_obj, "dns-server");
+
+    read_iface_ipv6(resp_obj, status);
     
     if (ipv4_addr_array && json_object_array_length(ipv4_addr_array) > 0){ 
        struct json_object *ipv4_addr_obj = json_object_array_get_idx(ipv4_addr_array, 0); 
@@ -61,7 +95,7 @@ int get_iface_status(char *ifname, iface_status_t *status){
        struct json_object *route_obj = json_object_array_get_idx(route_array, 0); 
        struct json_object *nexhop_obj = json_object_object_get(route_obj, "nexthop");
        if (nexhop_obj){
-           strcpy(status->gateway, json_object_get_string(nexhop_obj));
+           snprintf(status->gateway, sizeof(status->gateway), "%s", json_object_get_string(nexhop_obj));
        }
     }   
 
@@ -106,7 +140,7 @@ char *get_interface_status_buf(char *ifname) {
     
 
     size_t buf_size = 4096;
-    char *buf = malloc(buf_size);
+    char *buf = calloc(1, buf_size);
     if (!buf) {
         pclose(fp);
         return NULL;

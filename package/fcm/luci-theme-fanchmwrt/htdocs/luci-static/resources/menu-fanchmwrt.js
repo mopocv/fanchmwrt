@@ -4,6 +4,18 @@
 
 return baseclass.extend({
 	menuIcons: {
+		'status': 'status',
+		'system': 'system',
+		'network': 'fwx_network',
+		'services': 'services',
+		'vpn': 'vpn',
+		'nas': 'nas',
+		'statistics': 'fwx_monitor',
+		'containers': 'containers',
+		'docker': 'containers',
+		'dockerman': 'containers',
+		'vpnserver': 'vpn',
+		'bandwidth': 'fwx_monitor',
 		'fwx_network': 'fwx_network',
 		'fwx_network_service': 'fwx_network_service',
 		'fwx_wireless': 'fwx_wireless',
@@ -29,6 +41,8 @@ return baseclass.extend({
 		this.renderCategoryNav();
 		this.renderBreadcrumb(tree);
 		this.setup_mobile_menu();
+		this.setup_sidebar();
+		this.setup_dropdowns();
 		this.setup_content_scrollbar();
 		const category = L.env.dispatchpath[1]
 			? (this.getMenuCategory(L.env.dispatchpath[1]) === 'menu-item-basic' ? 'basic' : 'advanced')
@@ -43,6 +57,98 @@ return baseclass.extend({
 		}
 		if (node && L.env.dispatchpath.length >= 3)
 			this.renderTabMenu(node, url, 0);
+	},
+
+	setup_sidebar() {
+		const button = document.querySelector('.sidebar-toggle');
+		const apply = (collapsed) => {
+			document.body.classList.toggle('sidebar-collapsed', collapsed);
+			button.setAttribute('aria-expanded', String(!collapsed));
+			button.title = collapsed ? _('Expand menu') : _('Collapse menu');
+			button.setAttribute('aria-label', button.title);
+		};
+		apply(localStorage.getItem('luci-sidebar-collapsed') === 'true');
+		button.addEventListener('click', () => {
+			const collapsed = !document.body.classList.contains('sidebar-collapsed');
+			apply(collapsed);
+			localStorage.setItem('luci-sidebar-collapsed', String(collapsed));
+		});
+		const close = () => document.querySelectorAll('.sidebar-flyout').forEach((menu) => {
+			menu.parentElement.classList.remove('open');
+			menu.parentElement.querySelector('a.menu').setAttribute('aria-expanded', 'false');
+			if (menu.hasAttribute('popover')) menu.hidePopover();
+			menu.removeAttribute('popover');
+			menu.classList.remove('sidebar-flyout');
+			menu.style.cssText = '';
+		});
+		this.close_sidebar_flyouts = close;
+		button.addEventListener('click', close);
+		document.addEventListener('click', (event) => {
+			if (!event.target.closest('.sidebar-nav')) close();
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') close();
+		});
+		window.addEventListener('resize', close);
+		document.getElementById('topmenu').addEventListener('scroll', close, { passive: true });
+	},
+
+	// Keep lists in their widget DOM so LuCI selection and keyboard handlers still work.
+	// The browser top layer escapes overflow clipping in tables, cards and modals.
+	setup_dropdowns() {
+		const active = new Map();
+		const place = (widget, list) => {
+			const rect = widget.getBoundingClientRect();
+			const width = document.documentElement.clientWidth;
+			const height = window.innerHeight;
+			const below = height - rect.bottom - 8;
+			const above = rect.top - 8;
+			const down = below >= Math.min(320, list.scrollHeight) || below >= above;
+			const listWidth = Math.min(Math.max(rect.width, list.scrollWidth), width - 16);
+			Object.assign(list.style, {
+				position: 'fixed', margin: '0', right: 'auto',
+				left: Math.max(8, Math.min(rect.left, width - listWidth - 8)) + 'px',
+				top: down ? rect.bottom + 'px' : 'auto',
+				bottom: down ? 'auto' : height - rect.top + 'px',
+				width: listWidth + 'px', minWidth: '0', maxWidth: width - 16 + 'px',
+				maxHeight: Math.max(0, Math.min(320, down ? below : above)) + 'px'
+			});
+		};
+		new MutationObserver((records) => {
+			for (const record of records) {
+				const widget = record.target;
+				if (!widget.matches('.cbi-dropdown')) continue;
+				if (widget.hasAttribute('open')) {
+					if (active.has(widget)) continue;
+					const list = widget.querySelector('ul.dropdown');
+					if (!list) continue;
+					active.set(widget, [list, list.style.cssText]);
+					if (typeof list.showPopover === 'function') {
+						list.setAttribute('popover', 'manual');
+						list.showPopover();
+					}
+					// Run after LuCI's own animation-frame positioning.
+					requestAnimationFrame(() => {
+						if (widget.hasAttribute('open')) place(widget, list);
+					});
+				} else if (active.has(widget)) {
+					const [list, style] = active.get(widget);
+					if (list.hasAttribute('popover')) {
+						list.hidePopover();
+						list.removeAttribute('popover');
+					}
+					list.style.cssText = style;
+					list.style.top = list.style.bottom = list.style.maxHeight = '';
+					active.delete(widget);
+				}
+			}
+		}).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
+		document.addEventListener('scroll', (event) => {
+			active.forEach(([list], widget) => {
+				if (widget.isConnected && !list.contains(event.target)) place(widget, list);
+			});
+		}, true);
+		window.addEventListener('resize', () => active.forEach(([list], widget) => place(widget, list)));
 	},
 
 	setup_content_scrollbar() {
@@ -215,6 +321,10 @@ return baseclass.extend({
 
 		const topNavbarContent = E('div', { 'class': 'top-navbar-content' }, [
 			E('button', {
+				'class': 'sidebar-toggle', 'type': 'button',
+				'aria-controls': 'theme-sidebar', 'aria-expanded': 'true'
+			}, [E('span', { 'aria-hidden': 'true' })]),
+			E('button', {
 				'class': 'mobile-menu-toggle', 'type': 'button',
 				'aria-label': _('Menu'), 'aria-controls': 'theme-sidebar',
 				'aria-expanded': 'false'
@@ -360,14 +470,29 @@ return baseclass.extend({
 			}
 			const link = E('a', {
 				'class': (has_submenu ? 'menu ' : '') + (level === 0 ? 'menu-icon-' + (this.menuIcons[child.name] || this.defaultIcon) : ''),
-				'href': has_submenu ? '#' : L.url(url, child.name)
-			}, [_(child.title)]);
+				'href': has_submenu ? '#' : L.url(url, child.name),
+				'title': _(child.title), 'aria-label': _(child.title)
+			}, [E('span', { 'class': 'menu-label' }, [_(child.title)])]);
 			const li = E('li', { 'class': classes.join(' ') }, has_submenu ? [link, submenu] : [link]);
 			if (has_submenu) {
 				link.setAttribute('aria-expanded', String(is_active));
 				link.addEventListener('click', (event) => {
 					event.preventDefault();
-					const open = !li.classList.contains('open');
+					let open = !li.classList.contains('open');
+					const compact = document.body.classList.contains('sidebar-collapsed') && window.matchMedia('(min-width: 769px)').matches;
+					const was_flyout = submenu.classList.contains('sidebar-flyout');
+					if (compact) open = !was_flyout;
+					this.close_sidebar_flyouts();
+					if (compact && !was_flyout) {
+						const rect = link.getBoundingClientRect();
+						submenu.classList.add('sidebar-flyout');
+						if (typeof submenu.showPopover === 'function') {
+							submenu.setAttribute('popover', 'manual');
+							submenu.showPopover();
+						}
+						submenu.style.left = rect.right + 8 + 'px';
+						submenu.style.top = Math.max(8, Math.min(rect.top, window.innerHeight - submenu.offsetHeight - 8)) + 'px';
+					}
 					ul.querySelectorAll(':scope > .dropdown.open').forEach((item) => {
 						item.classList.remove('open');
 						item.querySelector('a.menu').setAttribute('aria-expanded', 'false');
